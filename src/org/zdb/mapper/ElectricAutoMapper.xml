@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zdb.mapper.ElectricAutoMapper">
+    <resultMap id="BaseResultMap" type="org.zdb.entity.ElectricAuto">
+        <!--
+        @mbggenerated
+        -->
+        <id column="ea_id" jdbcType="BIGINT" property="eaId" />
+        <result column="ea_eq_id" jdbcType="BIGINT" property="eaEqId" />
+        <result column="ea_channel_id" jdbcType="BIGINT" property="eaChannelId" />
+        <result column="ea_time" jdbcType="TIMESTAMP" property="eaTime" />
+        <result column="ea_read_num" jdbcType="DECIMAL" property="eaReadNum" />
+        <result column="ea_residue_num" jdbcType="DECIMAL" property="eaResidueNum" />
+        <result column="ea_use_num" jdbcType="DECIMAL" property="eaUseNum" />
+        <result column="ea_sharp_num" jdbcType="DECIMAL" property="eaSharpNum" />
+        <result column="ea_peak_num" jdbcType="DECIMAL" property="eaPeakNum" />
+        <result column="ea_flat_num" jdbcType="DECIMAL" property="eaFlatNum" />
+        <result column="ea_valley_num" jdbcType="DECIMAL" property="eaValleyNum" />
+        <result column="ea_create_admin" jdbcType="VARCHAR" property="eaCreateAdmin" />
+        <result column="ea_need" jdbcType="DECIMAL" property="eaNeed" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <!--
+        @mbggenerated
+        -->
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <!--
+        @mbggenerated
+        -->
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        <!--
+        @mbggenerated
+        -->
+        ea_id, ea_eq_id, ea_channel_id, ea_time, ea_read_num, ea_residue_num, ea_use_num, 
+        ea_sharp_num, ea_peak_num, ea_flat_num, ea_valley_num, ea_create_admin, ea_need
+    </sql>
+    <select id="selectByExample" parameterType="org.zdb.entity.ElectricAutoExample" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from electric_auto
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limitStart != null and limitStart>=0">
+            limit #{limitStart} , #{limitEnd}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--
+        @mbggenerated
+        -->
+        select 
+        <include refid="Base_Column_List" />
+        from electric_auto
+        where ea_id = #{eaId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--
+        @mbggenerated
+        -->
+        delete from electric_auto
+        where ea_id = #{eaId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="org.zdb.entity.ElectricAutoExample">
+        <!--
+        @mbggenerated
+        -->
+        delete from electric_auto
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="org.zdb.entity.ElectricAuto">
+        <!--
+        @mbggenerated
+        -->
+        insert into electric_auto (ea_id, ea_eq_id, ea_channel_id, 
+            ea_time, ea_read_num, ea_residue_num, 
+            ea_use_num, ea_sharp_num, ea_peak_num, 
+            ea_flat_num, ea_valley_num, ea_create_admin, 
+            ea_need)
+        values (#{eaId,jdbcType=BIGINT}, #{eaEqId,jdbcType=BIGINT}, #{eaChannelId,jdbcType=BIGINT}, 
+            #{eaTime,jdbcType=TIMESTAMP}, #{eaReadNum,jdbcType=DECIMAL}, #{eaResidueNum,jdbcType=DECIMAL}, 
+            #{eaUseNum,jdbcType=DECIMAL}, #{eaSharpNum,jdbcType=DECIMAL}, #{eaPeakNum,jdbcType=DECIMAL}, 
+            #{eaFlatNum,jdbcType=DECIMAL}, #{eaValleyNum,jdbcType=DECIMAL}, #{eaCreateAdmin,jdbcType=VARCHAR}, 
+            #{eaNeed,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" parameterType="org.zdb.entity.ElectricAuto">
+        <!--
+        @mbggenerated
+        -->
+        insert into electric_auto
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eaId != null">
+                ea_id,
+            </if>
+            <if test="eaEqId != null">
+                ea_eq_id,
+            </if>
+            <if test="eaChannelId != null">
+                ea_channel_id,
+            </if>
+            <if test="eaTime != null">
+                ea_time,
+            </if>
+            <if test="eaReadNum != null">
+                ea_read_num,
+            </if>
+            <if test="eaResidueNum != null">
+                ea_residue_num,
+            </if>
+            <if test="eaUseNum != null">
+                ea_use_num,
+            </if>
+            <if test="eaSharpNum != null">
+                ea_sharp_num,
+            </if>
+            <if test="eaPeakNum != null">
+                ea_peak_num,
+            </if>
+            <if test="eaFlatNum != null">
+                ea_flat_num,
+            </if>
+            <if test="eaValleyNum != null">
+                ea_valley_num,
+            </if>
+            <if test="eaCreateAdmin != null">
+                ea_create_admin,
+            </if>
+            <if test="eaNeed != null">
+                ea_need,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eaId != null">
+                #{eaId,jdbcType=BIGINT},
+            </if>
+            <if test="eaEqId != null">
+                #{eaEqId,jdbcType=BIGINT},
+            </if>
+            <if test="eaChannelId != null">
+                #{eaChannelId,jdbcType=BIGINT},
+            </if>
+            <if test="eaTime != null">
+                #{eaTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eaReadNum != null">
+                #{eaReadNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaResidueNum != null">
+                #{eaResidueNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaUseNum != null">
+                #{eaUseNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaSharpNum != null">
+                #{eaSharpNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaPeakNum != null">
+                #{eaPeakNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaFlatNum != null">
+                #{eaFlatNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaValleyNum != null">
+                #{eaValleyNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaCreateAdmin != null">
+                #{eaCreateAdmin,jdbcType=VARCHAR},
+            </if>
+            <if test="eaNeed != null">
+                #{eaNeed,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="org.zdb.entity.ElectricAutoExample" resultType="java.lang.Integer">
+        <!--
+        @mbggenerated
+        -->
+        select count(*) from electric_auto
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        <!--
+        @mbggenerated
+        -->
+        update electric_auto
+        <set>
+            <if test="record.eaId != null">
+                ea_id = #{record.eaId,jdbcType=BIGINT},
+            </if>
+            <if test="record.eaEqId != null">
+                ea_eq_id = #{record.eaEqId,jdbcType=BIGINT},
+            </if>
+            <if test="record.eaChannelId != null">
+                ea_channel_id = #{record.eaChannelId,jdbcType=BIGINT},
+            </if>
+            <if test="record.eaTime != null">
+                ea_time = #{record.eaTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.eaReadNum != null">
+                ea_read_num = #{record.eaReadNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaResidueNum != null">
+                ea_residue_num = #{record.eaResidueNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaUseNum != null">
+                ea_use_num = #{record.eaUseNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaSharpNum != null">
+                ea_sharp_num = #{record.eaSharpNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaPeakNum != null">
+                ea_peak_num = #{record.eaPeakNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaFlatNum != null">
+                ea_flat_num = #{record.eaFlatNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaValleyNum != null">
+                ea_valley_num = #{record.eaValleyNum,jdbcType=DECIMAL},
+            </if>
+            <if test="record.eaCreateAdmin != null">
+                ea_create_admin = #{record.eaCreateAdmin,jdbcType=VARCHAR},
+            </if>
+            <if test="record.eaNeed != null">
+                ea_need = #{record.eaNeed,jdbcType=DECIMAL},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        <!--
+        @mbggenerated
+        -->
+        update electric_auto
+        set ea_id = #{record.eaId,jdbcType=BIGINT},
+            ea_eq_id = #{record.eaEqId,jdbcType=BIGINT},
+            ea_channel_id = #{record.eaChannelId,jdbcType=BIGINT},
+            ea_time = #{record.eaTime,jdbcType=TIMESTAMP},
+            ea_read_num = #{record.eaReadNum,jdbcType=DECIMAL},
+            ea_residue_num = #{record.eaResidueNum,jdbcType=DECIMAL},
+            ea_use_num = #{record.eaUseNum,jdbcType=DECIMAL},
+            ea_sharp_num = #{record.eaSharpNum,jdbcType=DECIMAL},
+            ea_peak_num = #{record.eaPeakNum,jdbcType=DECIMAL},
+            ea_flat_num = #{record.eaFlatNum,jdbcType=DECIMAL},
+            ea_valley_num = #{record.eaValleyNum,jdbcType=DECIMAL},
+            ea_create_admin = #{record.eaCreateAdmin,jdbcType=VARCHAR},
+            ea_need = #{record.eaNeed,jdbcType=DECIMAL}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="org.zdb.entity.ElectricAuto">
+        <!--
+        @mbggenerated
+        -->
+        update electric_auto
+        <set>
+            <if test="eaEqId != null">
+                ea_eq_id = #{eaEqId,jdbcType=BIGINT},
+            </if>
+            <if test="eaChannelId != null">
+                ea_channel_id = #{eaChannelId,jdbcType=BIGINT},
+            </if>
+            <if test="eaTime != null">
+                ea_time = #{eaTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="eaReadNum != null">
+                ea_read_num = #{eaReadNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaResidueNum != null">
+                ea_residue_num = #{eaResidueNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaUseNum != null">
+                ea_use_num = #{eaUseNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaSharpNum != null">
+                ea_sharp_num = #{eaSharpNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaPeakNum != null">
+                ea_peak_num = #{eaPeakNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaFlatNum != null">
+                ea_flat_num = #{eaFlatNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaValleyNum != null">
+                ea_valley_num = #{eaValleyNum,jdbcType=DECIMAL},
+            </if>
+            <if test="eaCreateAdmin != null">
+                ea_create_admin = #{eaCreateAdmin,jdbcType=VARCHAR},
+            </if>
+            <if test="eaNeed != null">
+                ea_need = #{eaNeed,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ea_id = #{eaId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.zdb.entity.ElectricAuto">
+        <!--
+        @mbggenerated
+        -->
+        update electric_auto
+        set ea_eq_id = #{eaEqId,jdbcType=BIGINT},
+            ea_channel_id = #{eaChannelId,jdbcType=BIGINT},
+            ea_time = #{eaTime,jdbcType=TIMESTAMP},
+            ea_read_num = #{eaReadNum,jdbcType=DECIMAL},
+            ea_residue_num = #{eaResidueNum,jdbcType=DECIMAL},
+            ea_use_num = #{eaUseNum,jdbcType=DECIMAL},
+            ea_sharp_num = #{eaSharpNum,jdbcType=DECIMAL},
+            ea_peak_num = #{eaPeakNum,jdbcType=DECIMAL},
+            ea_flat_num = #{eaFlatNum,jdbcType=DECIMAL},
+            ea_valley_num = #{eaValleyNum,jdbcType=DECIMAL},
+            ea_create_admin = #{eaCreateAdmin,jdbcType=VARCHAR},
+            ea_need = #{eaNeed,jdbcType=DECIMAL}
+        where ea_id = #{eaId,jdbcType=BIGINT}
+    </update>
+</mapper>
